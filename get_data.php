@@ -37,6 +37,8 @@ $type_dict = array("pdf"    => "Text",
                    "png"    => "Picture", 
                    "xls"    => "Spreadsheet",
                    "p12"    => "other");
+                   
+$db->exec('BEGIN;');
 foreach($result->Archivo as $file){
     $id = $file->Id;
     $name = $file->Nombre;
@@ -56,6 +58,7 @@ foreach($result->Archivo as $file){
     $stm->bindValue(3, $extension, SQLITE3_TEXT);
     $stm->execute();
 }
+$db->exec('COMMIT;');
 echo "Database Ok \n";
 
 ?>
